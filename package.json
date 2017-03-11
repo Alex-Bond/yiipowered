@@ -1,0 +1,11 @@
+{
+  "name": "tys_management",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-composer": "^0.4.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.0.1"
+  }
+}
