@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'adminEmail' => 'sam+yiipowered@rmcreative.ru',
-    'notificationEmail' => 'noreply@yiipowered.com',
-    'supportEmail' => 'noreply@yiipowered.com',
+    'adminEmail' => getenv('ADMIN_EMAIL'),
+    'notificationEmail' => getenv('NOTIFICATION_EMAIL'),
+    'supportEmail' => getenv('SUPPORT_EMAIL'),
     'user.passwordResetTokenExpire' => 3600,
     'user.rememberMeDuration' => 3600 * 24 * 30,
 

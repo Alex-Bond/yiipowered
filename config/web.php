@@ -16,10 +16,8 @@ $config = [
         'authManager' => [
             'class' => 'yii\rbac\PhpManager',
         ],
-        'rollbar' => require __DIR__ . '/rollbar.php',
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => require __DIR__ . '/key.php',
+            'cookieValidationKey' => getenv('COOKIE_VALIDATION_KEY'),
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -33,10 +31,15 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => YII_DEBUG,
+            'useFileTransport' => getenv('MAILER_FILE_TRANSFER'),
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => getenv('SMTP_HOST'),
+                'username' => getenv('SMTP_USERNAME'),
+                'password' => getenv('SMTP_PASSWORD'),
+                'port' => getenv('SMTP_PORT'),
+                'encryption' => getenv('SMTP_ENCRYPTION')
+            ]
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -85,6 +88,10 @@ $config = [
         ],
     ],
     'params' => $params,
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm' => '@vendor/npm-asset',
+    ],
 ];
 
 if (YII_ENV_DEV) {
@@ -94,9 +101,13 @@ if (YII_ENV_DEV) {
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = 'yii\gii\Module';
-} else {
+} elseif (!empty(getenv('ROLLBAR_ACCESS_TOKEN'))) {
     $config['bootstrap'][] = 'rollbar';
     $config['components']['errorHandler']['class'] = 'baibaratsky\yii\rollbar\web\ErrorHandler';
+}
+
+if (!empty(getenv('ROLLBAR_ACCESS_TOKEN'))) {
+    $config['components']['rollbar'] = require __DIR__ . '/rollbar.php';
 }
 
 return $config;

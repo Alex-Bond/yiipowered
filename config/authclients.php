@@ -2,8 +2,8 @@
 return [
     'github' => [
         'class' => 'yii\authclient\clients\GitHub',
-        'clientId' => 'client_id',
-        'clientSecret' => 'client_secret_key',
+        'clientId' => getenv('GITHUB_CLIENT_ID'),
+        'clientSecret' => getenv('GITHUB_CLIENT_SECRET'),
         'scope' => 'user:email',
     ],
 ];
