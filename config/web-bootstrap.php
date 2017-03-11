@@ -1,6 +1,6 @@
 <?php
 
-Yii::$container->set('yii\grid\GridView', [
+Yii::$container->set(\yii\grid\GridView::class, [
     'pager' => [
         'options' => [
             'class' => 'pagination pull-right',
@@ -15,7 +15,7 @@ Yii::$container->set('yii\grid\GridView', [
     'layout' => "{items}{pager}",
 ]);
 
-Yii::$container->set('yii\grid\ActionColumn', [
+Yii::$container->set(\yii\grid\ActionColumn::class, [
     'header' => 'Action',
     'headerOptions' => [
         'class' => 'text-center col-md-1',

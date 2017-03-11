@@ -11,12 +11,12 @@ class ImageCropperAsset extends AssetBundle
     public $css = [
         'cropper/dist/cropper.min.css',
     ];
-    
+
     public $js = [
         'cropper/dist/cropper.min.js',
     ];
-    
+
     public $depends = [
-        'yii\web\JqueryAsset',
+        \yii\web\JqueryAsset::class,
     ];
 }

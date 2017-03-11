@@ -39,7 +39,7 @@ class Tag extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
             ],
         ];
     }
@@ -79,7 +79,7 @@ class Tag extends \yii\db\ActiveRecord
      */
     public function getProjectTags()
     {
-        return $this->hasMany(ProjectTag::className(), ['tag_id' => 'id'])->inverseOf('tag');
+        return $this->hasMany(ProjectTag::class, ['tag_id' => 'id'])->inverseOf('tag');
     }
 
     /**
@@ -87,6 +87,6 @@ class Tag extends \yii\db\ActiveRecord
      */
     public function getProjects()
     {
-        return $this->hasMany(Project::className(), ['id' => 'project_id'])->viaTable('{{%project_tag}}', ['tag_id' => 'id']);
+        return $this->hasMany(Project::class, ['id' => 'project_id'])->viaTable('{{%project_tag}}', ['tag_id' => 'id']);
     }
 }

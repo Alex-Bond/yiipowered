@@ -13,8 +13,8 @@ class MarkdownEditorAsset extends AssetBundle
         'editor.js',
     ];
     public $depends = [
-        'yii\web\JqueryAsset',
-        'app\assets\CodeMirrorAsset',
-        'app\assets\CodeMirrorButtonsAsset',
+        \yii\web\JqueryAsset::class,
+        \app\assets\CodeMirrorAsset::class,
+        \app\assets\CodeMirrorButtonsAsset::class,
     ];
 }

@@ -41,10 +41,10 @@ class Image extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
             ],
             [
-                'class' => BlameableBehavior::className(),
+                'class' => BlameableBehavior::class,
             ],
         ];
     }
@@ -56,7 +56,7 @@ class Image extends \yii\db\ActiveRecord
     {
         return [
             [['project_id'], 'integer'],
-            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'id']],
+            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::class, 'targetAttribute' => ['project_id' => 'id']],
         ];
     }
 
@@ -80,7 +80,7 @@ class Image extends \yii\db\ActiveRecord
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'updated_by'])->inverseOf('images');
+        return $this->hasOne(User::class, ['id' => 'updated_by'])->inverseOf('images');
     }
 
     /**
@@ -88,7 +88,7 @@ class Image extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'created_by'])->inverseOf('images0');
+        return $this->hasOne(User::class, ['id' => 'created_by'])->inverseOf('images0');
     }
 
     /**
@@ -96,7 +96,7 @@ class Image extends \yii\db\ActiveRecord
      */
     public function getProject()
     {
-        return $this->hasOne(Project::className(), ['id' => 'project_id'])->inverseOf('images');
+        return $this->hasOne(Project::class, ['id' => 'project_id'])->inverseOf('images');
     }
 
     public function getUrl()

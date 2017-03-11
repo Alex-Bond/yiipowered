@@ -36,8 +36,8 @@ class Vote extends \yii\db\ActiveRecord
             [['user_id', 'project_id', 'value', 'created_at', 'updated_at'], 'required'],
             [['user_id', 'project_id', 'value', 'created_at', 'updated_at'], 'integer'],
             [['user_id', 'project_id'], 'unique', 'targetAttribute' => ['user_id', 'project_id'], 'message' => 'The combination of User ID and Project ID has already been taken.'],
-            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::class, 'targetAttribute' => ['project_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -61,7 +61,7 @@ class Vote extends \yii\db\ActiveRecord
      */
     public function getProject()
     {
-        return $this->hasOne(Project::className(), ['id' => 'project_id'])->inverseOf('votes');
+        return $this->hasOne(Project::class, ['id' => 'project_id'])->inverseOf('votes');
     }
 
     /**
@@ -69,6 +69,6 @@ class Vote extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id'])->inverseOf('votes');
+        return $this->hasOne(User::class, ['id' => 'user_id'])->inverseOf('votes');
     }
 }

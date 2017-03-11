@@ -48,7 +48,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function behaviors()
     {
         return [
-            TimestampBehavior::className(),
+            TimestampBehavior::class,
         ];
     }
 
@@ -233,7 +233,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getAuths()
     {
-        return $this->hasMany(Auth::className(), ['user_id' => 'id'])->inverseOf('user');
+        return $this->hasMany(Auth::class, ['user_id' => 'id'])->inverseOf('user');
     }
 
     /**

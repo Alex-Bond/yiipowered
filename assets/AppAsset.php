@@ -24,8 +24,8 @@ class AppAsset extends AssetBundle
         'static/js/main.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-        'app\assets\MagnificPopupAsset',
+        \yii\web\YiiAsset::class,
+        \yii\bootstrap\BootstrapAsset::class,
+        \app\assets\MagnificPopupAsset::class,
     ];
 }

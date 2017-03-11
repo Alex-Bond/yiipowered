@@ -12,19 +12,19 @@ return [
     'bootstrap' => ['log', 'gii'],
     'controllerNamespace' => 'app\commands',
     'modules' => [
-        'gii' => 'yii\gii\Module',
+        'gii' => \yii\gii\Module::class,
     ],
     'components' => [
         'authManager' => [
-            'class' => 'yii\rbac\PhpManager',
+            'class' => \yii\rbac\PhpManager::class,
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => \yii\caching\FileCache::class,
         ],
         'log' => [
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => \yii\log\FileTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
             ],

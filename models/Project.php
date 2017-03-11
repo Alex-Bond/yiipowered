@@ -66,17 +66,17 @@ class Project extends \yii\db\ActiveRecord
     {
         return [
             [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
             ],
             [
-                'class' => BlameableBehavior::className(),
+                'class' => BlameableBehavior::class,
             ],
             [
-                'class' => SluggableBehavior::className(),
+                'class' => SluggableBehavior::class,
                 'attribute' => 'title',
             ],
             [
-                'class' => TaggableBehavior::className(),
+                'class' => TaggableBehavior::class,
             ],
         ];
     }
@@ -150,7 +150,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getImages()
     {
-        return $this->hasMany(Image::className(), ['project_id' => 'id'])->inverseOf('project');
+        return $this->hasMany(Image::class, ['project_id' => 'id'])->inverseOf('project');
     }
 
     public function getPlaceholderUrl()
@@ -172,7 +172,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getUpdatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'updated_by'])->inverseOf('projects');
+        return $this->hasOne(User::class, ['id' => 'updated_by'])->inverseOf('projects');
     }
 
     /**
@@ -180,7 +180,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getCreatedBy()
     {
-        return $this->hasOne(User::className(), ['id' => 'created_by'])->inverseOf('projects0');
+        return $this->hasOne(User::class, ['id' => 'created_by'])->inverseOf('projects0');
     }
 
     /**
@@ -188,7 +188,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getProjectTags()
     {
-        return $this->hasMany(ProjectTag::className(), ['project_id' => 'id'])->inverseOf('project');
+        return $this->hasMany(ProjectTag::class, ['project_id' => 'id'])->inverseOf('project');
     }
 
     /**
@@ -196,7 +196,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getTags()
     {
-        return $this->hasMany(Tag::className(), ['id' => 'tag_id'])->viaTable('{{%project_tag}}', ['project_id' => 'id']);
+        return $this->hasMany(Tag::class, ['id' => 'tag_id'])->viaTable('{{%project_tag}}', ['project_id' => 'id']);
     }
 
     /**
@@ -204,7 +204,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('{{%project_user}}', ['project_id' => 'id']);
+        return $this->hasMany(User::class, ['id' => 'user_id'])->viaTable('{{%project_user}}', ['project_id' => 'id']);
     }
 
     /**
@@ -212,7 +212,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getVotes()
     {
-        return $this->hasMany(Vote::className(), ['project_id' => 'id'])->inverseOf('project');
+        return $this->hasMany(Vote::class, ['project_id' => 'id'])->inverseOf('project');
     }
 
     /**
@@ -220,7 +220,7 @@ class Project extends \yii\db\ActiveRecord
      */
     public function getVoters()
     {
-        return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('{{%vote}}', ['project_id' => 'id']);
+        return $this->hasMany(User::class, ['id' => 'user_id'])->viaTable('{{%vote}}', ['project_id' => 'id']);
     }
 
     /**
@@ -284,7 +284,7 @@ class Project extends \yii\db\ActiveRecord
     public function getDescriptions()
     {
         return $this
-            ->hasMany(ProjectDescription::className(), ['project_id' => 'id'])
+            ->hasMany(ProjectDescription::class, ['project_id' => 'id'])
             ->orderBy(new Expression("language = 'en-US' DESC"))
             ->indexBy('language');
     }

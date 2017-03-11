@@ -31,8 +31,8 @@ class ProjectTag extends \yii\db\ActiveRecord
         return [
             [['project_id', 'tag_id'], 'required'],
             [['project_id', 'tag_id'], 'integer'],
-            [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::className(), 'targetAttribute' => ['tag_id' => 'id']],
-            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::className(), 'targetAttribute' => ['project_id' => 'id']],
+            [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tag::class, 'targetAttribute' => ['tag_id' => 'id']],
+            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Project::class, 'targetAttribute' => ['project_id' => 'id']],
         ];
     }
 
@@ -52,7 +52,7 @@ class ProjectTag extends \yii\db\ActiveRecord
      */
     public function getTag()
     {
-        return $this->hasOne(Tag::className(), ['id' => 'tag_id'])->inverseOf('projectTags');
+        return $this->hasOne(Tag::class, ['id' => 'tag_id'])->inverseOf('projectTags');
     }
 
     /**
@@ -60,6 +60,6 @@ class ProjectTag extends \yii\db\ActiveRecord
      */
     public function getProject()
     {
-        return $this->hasOne(Project::className(), ['id' => 'project_id'])->inverseOf('projectTags');
+        return $this->hasOne(Project::class, ['id' => 'project_id'])->inverseOf('projectTags');
     }
 }
